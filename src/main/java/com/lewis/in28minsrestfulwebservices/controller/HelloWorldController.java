@@ -3,6 +3,7 @@ package com.lewis.in28minsrestfulwebservices.controller;
 import com.lewis.in28minsrestfulwebservices.model.HelloObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.MessageSource;
+import org.springframework.context.i18n.LocaleContextHolder;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestHeader;
@@ -16,8 +17,8 @@ public class HelloWorldController {
     MessageSource messageSource;
 
     @GetMapping("/hello")
-    public String sayHello(@RequestHeader(value = "Accept-Language", required = false)Locale locale){
-        return messageSource.getMessage("greetings.hello", null, locale);
+    public String sayHello(){
+        return messageSource.getMessage("greetings.hello", null, LocaleContextHolder.getLocale());
     }
     @GetMapping("/hello-object")
     public HelloObject sayHelloWithObject(){
